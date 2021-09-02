@@ -1,0 +1,11 @@
+version: "3"
+services:
+  app:
+    image: pmprcoger/symfony:latest-dev
+    volumes:
+      - ./:/srv/app
+    ports:
+      - "443:443"
+    environment:
+      - APP_ENV=dev
+

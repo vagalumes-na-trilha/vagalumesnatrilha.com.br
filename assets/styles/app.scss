@@ -4,4 +4,21 @@ body {
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-icons/font/bootstrap-icons.css';
 
+#creditos {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 10px;
+}
 
+#rodape {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: lightgrey;
+}
+
+#conteudo {
+    margin-bottom: 70px;
+}

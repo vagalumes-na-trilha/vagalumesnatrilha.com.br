@@ -8,11 +8,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RaizController extends AbstractController
 {
-    #[Route('/', name: 'raiz')]
+    #[Route('/', name: 'inicio')]
     public function index(): Response
     {
+
         return $this->render('raiz/index.html.twig', [
-            'controller_name' => 'RaizController',
+            'menu' => 'RaizController',
         ]);
     }
 }

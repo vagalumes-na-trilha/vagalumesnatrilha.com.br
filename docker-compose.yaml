@@ -8,4 +8,18 @@ services:
       - "443:443"
     environment:
       - APP_ENV=dev
+    networks:
+      webnet:
+    links:
+      - db
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_PASSWORD=vagalumes
+      - POSTGRES_USER=vagalumes
+      - POSTGRES_DB=vagalumes
+    networks:
+      webnet:
+networks:
+  webnet:
 

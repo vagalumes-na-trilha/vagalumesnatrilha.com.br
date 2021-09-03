@@ -5,6 +5,10 @@
     <meta http-equiv="Content-Language" content="pt-br">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Vagalumes na Trilha{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+
 
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
@@ -26,38 +30,45 @@
                          alt="Logotipo - Vagalumes na Trilha"/>
                 </div>
             </a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto justify-content-center align-bottom">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Inicial</a>
+                        <a class="nav-link itemDeMenu active" aria-current="page" href="#">Início</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item itemDeMenu ">
                         <a class="nav-link" href="#">O nome</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item itemDeMenu ">
                         <a class="nav-link" href="#">A equipe</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item itemDeMenu ">
                         <a class="nav-link" href="#">Os eventos</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item itemDeMenu ">
                         <a class="nav-link" href="#">Roteiros possíveis</a>
                     </li>
                 </ul>
+                <div class="col-md-3 text-end">
+                    <button type="button" class="btn btn-outline-secondary me-2">Login</button>
+                </div>
             </div>
         </div>
     </nav>
 </header>
 <div id="conteudo">
-{% block body %}{% endblock %}
+    {% block body %}{% endblock %}
 </div>
 <footer>
     <div id="rodape">
+        <p id="redes">
+            Redes Sociais
+        </p>
         <ul class="nav justify-content-center ">
             <li class="nav-item m-3">
                 <i class="bi bi-instagram"></i>
@@ -70,7 +81,7 @@
         </ul>
         <p id="creditos">
             Desenvolvido por <i class="bi-github" role="img" aria-label="GitHub"></i>
-            <a class="link-dark" href="https://github.com/danielfleck/">Daniel Rodrigo Fleck</a>
+            <a class="link-light" href="https://github.com/danielfleck/">Daniel Rodrigo Fleck</a>
         </p>
     </div>
 </footer>
@@ -79,5 +90,6 @@
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
 {% endblock %}
+
 </body>
 </html>

@@ -1,5 +1,6 @@
 body {
     background-color: lightgray;
+    font-family: "Montserrat";
 }
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-icons/font/bootstrap-icons.css';
@@ -9,6 +10,17 @@ body {
     padding: 0;
     text-align: center;
     font-size: 10px;
+    color: lightgrey;
+    background-color: #222222;
+}
+
+#redes {
+    margin: 20px 0 0 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: #DDDDDD solid 1pt;
 }
 
 #rodape {
@@ -21,4 +33,11 @@ body {
 
 #conteudo {
     margin-bottom: 70px;
+}
+
+.itemDeMenu:hover {
+    border-bottom: #ffc107 solid 3px;
+}
+.itemDeMenu {
+    border-bottom: #ffffff solid 3px;
 }

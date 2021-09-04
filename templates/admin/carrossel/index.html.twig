@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+<h3 style="text-align: center;">Imagens do Carrossel</h3>
+    <button class="btn btn-secondary mb-3" type="submit">Nova imagem</button>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Texto</th>
+            <th>Link</th>
+            <th>Imagem</th>
+            <th>Data Hora Início</th>
+            <th>Data Hora Fim</th>
+        </thead>
+        <tbody>
+            {% for c in carrossel %}
+                <tr>
+                    <td>{{ c.id }}</td>
+                    <td>{{ c.titulo }}</td>
+                    <td>{{ c.texto }}</td>
+                    <td><a href="{{ c.link }}">{{ c.link }}</a></td>
+                    <td><a href="{{ asset(c.arquivo) }}">{{ c.arquivo }}</a></td>
+                    <td>{{ c.datahoraInicio | date("H:i:s d/m/Y", "America/Sao_Paulo") }}</td>
+                    <td>
+                        {%  if c.datahoraFim %}
+                        {{ c.datahoraFim | date("H:i:s d/m/Y", "America/Sao_Paulo") }}
+                        {%  else %}
+                            Desativar
+                        {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7"> Não encontrado</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

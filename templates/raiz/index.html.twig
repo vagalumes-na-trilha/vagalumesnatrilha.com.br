@@ -26,8 +26,11 @@
                             >
                             <img src="{{ asset( c.arquivo ) }}" class="d-block w-100" alt="{{ c.titulo }}">
                             <div class="carousel-caption d-none d-md-block">
+                                <a class="link-light" href="{{ c.link }}">
                                 <h5>{{ c.titulo }}</h5>
+                                </a>
                                 <p>{{ c.texto }}</p>
+
                             </div>
                         </div>
                     {% endfor %}

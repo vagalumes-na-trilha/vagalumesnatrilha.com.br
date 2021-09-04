@@ -1,7 +1,47 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div style="text-align: center">
-    <img src="{{ asset('img/em-construcao.gif') }}" alt="Em construção!"/>
-</div>
+    {% if carrossel %}
+        <div carrossel-div>
+            <div id="carrossel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    {% for i in 0..carrossel|length -1 %}
+                        {% if loop.first %}
+                            <button type="button" data-bs-target="#carrossel" data-bs-slide-to="{{ i }}" class="active"
+                                    aria-current="true" aria-label="Slide {{ i + 1 }}"></button>
+                        {% else %}
+                            <button type="button" data-bs-target="#carrossel" data-bs-slide-to="{{ i }}"
+                                    aria-label="Slide {{ i + 1 }}"></button>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="carousel-inner">
+                    {% for c in carrossel %}
+                        <div
+                                {% if loop.first %}
+                                class="carousel-item active"
+                                {% else %}
+                                class="carousel-item align-items-center"
+                            {% endif %}
+                            >
+                            <img src="{{ asset( c.arquivo ) }}" class="d-block w-100" alt="{{ c.titulo }}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>{{ c.titulo }}</h5>
+                                <p>{{ c.texto }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carrossel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carrossel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+        </div>
+    {% endif %}
 {% endblock %}

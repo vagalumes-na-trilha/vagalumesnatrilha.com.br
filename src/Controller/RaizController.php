@@ -24,7 +24,7 @@ class RaizController extends AbstractController
         $carrossel = $query->getResult();
 
         return $this->render('raiz/index.html.twig', [
-            'carrosel' => $carrossel,
+            'carrossel' => $carrossel,
         ]);
     }
 }

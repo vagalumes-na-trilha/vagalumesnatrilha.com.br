@@ -53,10 +53,27 @@
                     <li class="nav-item itemDeMenu ">
                         <a class="nav-link" href="#">Roteiros possíveis</a>
                     </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Administração
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="{{ path('admin_carrossel') }}">Carrossel</a></li>
+                                <li><a class="dropdown-item" href="#">Eventos</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
                 </ul>
+                {% if not is_granted('ROLE_USER') %}
                 <div class="col-md-3 text-end">
-                    <button type="button" class="btn btn-outline-secondary me-2">Login</button>
+                    <a href="{{ path('app_login') }}"><button type="button" class="btn btn-outline-secondary me-2">Login</button></a>
                 </div>
+                    {% else %}
+                <div class="col-md-3 text-end">
+                    <a href="{{ path('app_logout') }}"><button type="button" class="btn btn-outline-secondary me-2">Logout</button></a>
+                </div>
+                {% endif %}
             </div>
         </div>
     </nav>

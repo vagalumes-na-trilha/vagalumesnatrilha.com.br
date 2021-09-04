@@ -14,6 +14,8 @@ services:
       - db_postgres
   db_postgres:
     image: postgres:13
+    ports:
+      - "5432:5432"
     environment:
       - POSTGRES_PASSWORD=vagalumes
       - POSTGRES_USER=vagalumes

@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=CarrosselRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Carrossel
 {
@@ -122,5 +123,15 @@ class Carrossel
         $this->datahoraFim = $datahoraFim;
 
         return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function preencheDatahoraInicio()
+    {
+        if (is_null($this->datahoraInicio)) {
+            $this->setDatahoraInicio(new Datetime('now'));
+        }
     }
 }

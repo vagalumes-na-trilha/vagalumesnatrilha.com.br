@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Carrossel;
 use App\Repository\CarrosselRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,5 +36,15 @@ class CarrosselController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('admin_carrossel');
+    }
+
+    #[Route('/adm/carrossel/novo', name: 'admin_carrossel_novo')]
+    public function novoCarrossel(CarrosselRepository $carrosselRepository, EntityManagerInterface $entityManager, Request $request): Response
+    {
+        $carrossel = new Carrossel();
+
+        return $this->render('admin/carrossel/novo.html.twig', [
+            'carrossel' => $carrossel
+        ]);
     }
 }

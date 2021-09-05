@@ -5,7 +5,7 @@
 {% block body %}
 <h3 style="text-align: center;">Imagens do Carrossel</h3>
     <button class="btn btn-secondary mb-3" type="submit">Nova imagem</button>
-    <table class="table table-bordered table-striped">
+    <table class="table  table-striped">
         <thead>
             <th>ID</th>
             <th>Título</th>
@@ -28,7 +28,10 @@
                         {%  if c.datahoraFim %}
                         {{ c.datahoraFim | date("H:i:s d/m/Y", "America/Sao_Paulo") }}
                         {%  else %}
-                            Desativar
+                            <form action="{{ path('admin_carrossel_desativar') }}" method="POST">
+                            <input type="hidden" name="carrossel[id]" value="{{ c.id }}">
+                            <button class="btn btn-outline-success">Desativar</button>
+                            </form>
                         {% endif %}
                     </td>
                 </tr>

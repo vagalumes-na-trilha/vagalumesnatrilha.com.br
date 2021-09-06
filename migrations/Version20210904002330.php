@@ -22,15 +22,15 @@ final class Version20210904002330 extends AbstractMigration
         $this->addSql("INSERT INTO carrossel 
                 (id, arquivo, datahora_inicio, link, titulo, texto) 
             VALUES 
-                (1, 'uploads/carrossel/001.jpg', now(), '#', 'Morro do Canal', 'Piraquara-PR')");
+                (nextval('carrossel_id_seq'), 'uploads/carrossel/001.jpg', now(), '#', 'Morro do Canal', 'Piraquara-PR')");
         $this->addSql("INSERT INTO carrossel 
                 (id, arquivo, datahora_inicio, link, titulo, texto) 
             VALUES 
-                (2, 'uploads/carrossel/002.jpg', now(), '#', 'Morro do Boi', 'Matinhos-PR')");
+                (nextval('carrossel_id_seq'), 'uploads/carrossel/002.jpg', now(), '#', 'Morro do Boi', 'Matinhos-PR')");
         $this->addSql("INSERT INTO carrossel 
                 (id, arquivo, datahora_inicio, link, titulo, texto) 
             VALUES 
-                (3, 'uploads/carrossel/003.jpg', now(), '#', 'Morro do Teleférico', 'Matinhos-PR')");
+                (nextval('carrossel_id_seq'), 'uploads/carrossel/003.jpg', now(), '#', 'Morro do Teleférico', 'Matinhos-PR')");
     }
 
     public function down(Schema $schema): void

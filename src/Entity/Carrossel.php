@@ -131,7 +131,7 @@ class Carrossel
     public function preencheDatahoraInicio()
     {
         if (is_null($this->datahoraInicio)) {
-            $this->setDatahoraInicio(new Datetime('now'));
+            $this->setDatahoraInicio(new \Datetime('now'));
         }
     }
 }

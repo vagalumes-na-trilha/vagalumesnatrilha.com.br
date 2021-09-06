@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Carrossel;
+use App\Form\CarrosselType;
 use App\Repository\CarrosselRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,12 +40,44 @@ class CarrosselController extends AbstractController
     }
 
     #[Route('/adm/carrossel/novo', name: 'admin_carrossel_novo')]
-    public function novoCarrossel(CarrosselRepository $carrosselRepository, EntityManagerInterface $entityManager, Request $request): Response
+    public function novoCarrossel(Request $request, $uploadsDir): Response
     {
         $carrossel = new Carrossel();
 
+        $form = $this->createForm(CarrosselType::class, $carrossel);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $carrossel = $form->getdata();
+
+            /**
+             * @var \Symfony\Component\HttpFoundation\File\UploadedFile $imagem
+             */
+            $imagem = $form->get('arquivo')->getData();
+
+            $nomeDoArquivoDeImagem = 'carrossel/' . date("YmdHisO") . '-';
+
+            $nomeDoArquivoDeImagem .= $imagem->getClientOriginalName();
+
+            move_uploaded_file($imagem->getPathname(), $uploadsDir . '/' . $nomeDoArquivoDeImagem);
+
+            $carrossel->setArquivo ('uploads/' . $nomeDoArquivoDeImagem);
+
+            $this->getDoctrine()->getManager()->persist($carrossel);
+            $this->getDoctrine()->getManager()->flush();
+
+
+
+
+            $this->addFlash('success', 'Imagem adicionada');
+
+            return $this->redirectToRoute('admin_carrossel');
+
+        }
+
         return $this->render('admin/carrossel/novo.html.twig', [
-            'carrossel' => $carrossel
+            'form' => $form->createView()
         ]);
     }
 }

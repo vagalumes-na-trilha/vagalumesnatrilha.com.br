@@ -1,0 +1,121 @@
+<div class="mt-3 row">
+    <div class="col-12 col-md-3">
+        <div id="container-percorrido" class="container-informacao">
+            <div class="container-informacao-svg">
+                <svg width="160" height="160">
+                    <circle id="circulo-percorrido" r="60" cx="80" cy="80"></circle>
+                </svg>
+            </div>
+            <div class="container-informacao-valor">10</div>
+        </div>
+        <div class="container-informacao-nome">Percorridos</div>
+    </div>
+    <div class="col-12 col-md-3">
+        <div id="container-altitude-maxima" class="container-informacao">
+            <div class="container-informacao-svg">
+                <svg width="160" height="160">
+                    <circle id="circulo-altitude-maxima" r="60" cx="80" cy="80"></circle>
+                </svg>
+            </div>
+            <div class="container-informacao-valor">1360m</div>
+        </div>
+        <div class="container-informacao-nome">Altitude Máxima</div>
+    </div>
+    <div class="col-12 col-md-3">
+        <div id="container-ascendidos" class="container-informacao">
+            <div class="container-informacao-svg">
+
+                <svg width="160" height="160">
+                    <circle id="circulo-ascendidos" r="60" cx="80" cy="80"></circle>
+                </svg>
+
+            </div>
+            <div class="container-informacao-valor">6km</div>
+        </div>
+        <div class="container-informacao-nome">Ascendidos</div>
+    </div>
+    <div class="col-12 col-md-3">
+        <div id="container-eventos" class="container-informacao">
+            <div class="container-informacao-svg">
+
+                <svg width="160" height="160">
+                    <circle id="circulo-eventos" r="60" cx="80" cy="80"></circle>
+                </svg>
+
+            </div>
+            <div class="container-informacao-valor">7</div>
+        </div>
+        <div class="container-informacao-nome">Eventos</div>
+    </div>
+</div>
+
+<style>
+    .container-informacao {
+        text-align: center;
+
+    }
+    .container-informacao-nome {
+        text-align: center;
+    }
+
+    .container-informacao-svg {
+        position:relative;
+        width: 100%;
+        top: 0px
+    }
+
+    .container-informacao-valor {
+        position:relative;
+        width: 100%;
+        top: -90px;
+    }
+
+    #circulo-percorrido {
+        fill: transparent;
+        stroke: darkgoldenrod;
+        stroke-width: 20;
+        stroke-dasharray: 471px;
+        stroke-dashoffset: 471px;
+        transition: all 1.5s ease-out;
+    }
+
+    #circulo-altitude-maxima {
+        fill: transparent;
+        stroke: darkgreen;
+        stroke-width: 20;
+        stroke-dasharray: 471px;
+        stroke-dashoffset: 471px;
+        transition: all 1.5s ease-out;
+    }
+
+    #circulo-ascendidos {
+        fill: transparent;
+        stroke: darkred;
+        stroke-width: 20;
+        stroke-dasharray: 471px;
+        stroke-dashoffset: 471px;
+        transition: all 1.5s ease-out;
+    }
+
+    #circulo-eventos {
+        fill: transparent;
+        stroke: darkblue;
+        stroke-width: 20;
+        stroke-dasharray: 471px;
+        stroke-dashoffset: 471px;
+        transition: all 1.5s ease-out;
+    }
+
+    #circulo-eventos: {
+        stroke-dashoffset: 0;
+    }
+
+
+</style>
+
+<script>
+    document.getElementById("circulo-percorrido").style.strokeDashoffset = 0
+    document.getElementById("circulo-altitude-maxima").style.strokeDashoffset = 0
+    document.getElementById("circulo-ascendidos").style.strokeDashoffset = 0
+    document.getElementById("circulo-eventos").style.strokeDashoffset = 0
+</script>

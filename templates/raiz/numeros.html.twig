@@ -6,9 +6,9 @@
                     <circle id="circulo-percorrido" r="60" cx="80" cy="80"></circle>
                 </svg>
             </div>
-            <div class="container-informacao-valor">10</div>
+            <div class="container-informacao-valor"><span id="valor-percorrido">{{ percorrido }}</span> km</div>
         </div>
-        <div class="container-informacao-nome">Percorridos</div>
+        <div class="container-informacao-nome">Percorrido</div>
     </div>
     <div class="col-12 col-md-3">
         <div id="container-altitude-maxima" class="container-informacao">
@@ -17,7 +17,7 @@
                     <circle id="circulo-altitude-maxima" r="60" cx="80" cy="80"></circle>
                 </svg>
             </div>
-            <div class="container-informacao-valor">1360m</div>
+            <div class="container-informacao-valor"><span id="valor-altitude-maxima">{{ altitudeMaxima }}</span> mts</div>
         </div>
         <div class="container-informacao-nome">Altitude Máxima</div>
     </div>
@@ -30,7 +30,7 @@
                 </svg>
 
             </div>
-            <div class="container-informacao-valor">6km</div>
+            <div class="container-informacao-valor"><span id="valor-ascendido">{{ ascendido }}</span> mts.</div>
         </div>
         <div class="container-informacao-nome">Ascendidos</div>
     </div>
@@ -43,7 +43,7 @@
                 </svg>
 
             </div>
-            <div class="container-informacao-valor">7</div>
+            <div class="container-informacao-valor"><span id="valor-eventos">{{ eventos }}</span></div>
         </div>
         <div class="container-informacao-nome">Eventos</div>
     </div>
@@ -52,7 +52,6 @@
 <style>
     .container-informacao {
         text-align: center;
-
     }
     .container-informacao-nome {
         text-align: center;
@@ -76,7 +75,7 @@
         stroke-width: 20;
         stroke-dasharray: 471px;
         stroke-dashoffset: 471px;
-        transition: all 1.5s ease-out;
+        transition: all 3s ease-out;
     }
 
     #circulo-altitude-maxima {
@@ -85,7 +84,7 @@
         stroke-width: 20;
         stroke-dasharray: 471px;
         stroke-dashoffset: 471px;
-        transition: all 1.5s ease-out;
+        transition: all 3s ease-out;
     }
 
     #circulo-ascendidos {
@@ -94,7 +93,7 @@
         stroke-width: 20;
         stroke-dasharray: 471px;
         stroke-dashoffset: 471px;
-        transition: all 1.5s ease-out;
+        transition: all 3s ease-out;
     }
 
     #circulo-eventos {
@@ -103,7 +102,7 @@
         stroke-width: 20;
         stroke-dasharray: 471px;
         stroke-dashoffset: 471px;
-        transition: all 1.5s ease-out;
+        transition: all 3s ease-out;
     }
 
     #circulo-eventos: {
@@ -114,8 +113,30 @@
 </style>
 
 <script>
-    document.getElementById("circulo-percorrido").style.strokeDashoffset = 0
-    document.getElementById("circulo-altitude-maxima").style.strokeDashoffset = 0
-    document.getElementById("circulo-ascendidos").style.strokeDashoffset = 0
-    document.getElementById("circulo-eventos").style.strokeDashoffset = 0
+    document.getElementById("circulo-percorrido").style.strokeDashoffset = 0;
+    document.getElementById("circulo-altitude-maxima").style.strokeDashoffset = 0;
+    document.getElementById("circulo-ascendidos").style.strokeDashoffset = 0;
+    document.getElementById("circulo-eventos").style.strokeDashoffset = 0;
+
+    carregarValores(document.getElementById("valor-percorrido"), {{ percorrido }});
+    carregarValores(document.getElementById("valor-altitude-maxima"), {{ altitudeMaxima }});
+    carregarValores(document.getElementById("valor-ascendido"), {{ ascendido }});
+    carregarValores(document.getElementById("valor-eventos"), {{ eventos }});
+
+    function carregarValores(elm, valor) {
+        let carregar = 0;
+        let incremento = valor / 100;
+
+        let intervalo = setInterval(
+            function (){
+                carregar += incremento;
+                elm.innerText = Math.trunc(carregar);
+                if (valor <= elm.innerText){
+                    elm.innerText = valor
+                    clearInterval(intervalo);
+                }
+            }
+            ,
+            3000/300);
+    }
 </script>

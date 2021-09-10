@@ -25,6 +25,10 @@ class RaizController extends AbstractController
 
         return $this->render('raiz/index.html.twig', [
             'carrossel' => $carrossel,
+            'percorrido' => 25,
+            'altitudeMaxima' => 1350,
+            'ascendido' => 2000,
+            'eventos' => 7
         ]);
     }
 }

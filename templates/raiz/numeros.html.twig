@@ -7,8 +7,8 @@
                 </svg>
             </div>
             <div class="container-informacao-valor"><span id="valor-percorrido">{{ percorrido }}</span> km</div>
+            <div class="container-informacao-nome">Percorridos</div>
         </div>
-        <div class="container-informacao-nome">Percorrido</div>
     </div>
     <div class="col-12 col-md-3">
         <div id="container-altitude-maxima" class="container-informacao">
@@ -18,8 +18,8 @@
                 </svg>
             </div>
             <div class="container-informacao-valor"><span id="valor-altitude-maxima">{{ altitudeMaxima }}</span> mts</div>
+            <div class="container-informacao-nome">Altitude Máxima</div>
         </div>
-        <div class="container-informacao-nome">Altitude Máxima</div>
     </div>
     <div class="col-12 col-md-3">
         <div id="container-ascendidos" class="container-informacao">
@@ -31,8 +31,8 @@
 
             </div>
             <div class="container-informacao-valor"><span id="valor-ascendido">{{ ascendido }}</span> mts.</div>
+            <div class="container-informacao-nome">Ascendidos</div>
         </div>
-        <div class="container-informacao-nome">Ascendidos</div>
     </div>
     <div class="col-12 col-md-3">
         <div id="container-eventos" class="container-informacao">
@@ -44,8 +44,8 @@
 
             </div>
             <div class="container-informacao-valor"><span id="valor-eventos">{{ eventos }}</span></div>
+            <div class="container-informacao-nome">Eventos</div>
         </div>
-        <div class="container-informacao-nome">Eventos</div>
     </div>
 </div>
 
@@ -55,18 +55,21 @@
     }
     .container-informacao-nome {
         text-align: center;
+        position:relative;
+        width: 100%;
+        top: -0px;
     }
 
     .container-informacao-svg {
         position:relative;
         width: 100%;
-        top: 0px
+        top: 30px
     }
 
     .container-informacao-valor {
         position:relative;
         width: 100%;
-        top: -90px;
+        top: -60px;
     }
 
     #circulo-percorrido {

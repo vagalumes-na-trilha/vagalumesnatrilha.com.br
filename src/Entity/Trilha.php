@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TrilhaRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -67,6 +69,36 @@ class Trilha
      * @ORM\Column(type="string", length=255)
      */
     private $municipioDoObjetivo;
+
+    /**
+     * @ORM\Column(type="geometry", nullable=true)
+     */
+    private $inicioGeom;
+
+    /**
+     * @ORM\Column(type="geometry", nullable=true)
+     */
+    private $fimGeom;
+
+    /**
+     * @ORM\Column(type="geometry", nullable=true)
+     */
+    private $geomDoObjetivo;
+
+    /**
+     * @ORM\Column(type="geometry", nullable=true)
+     */
+    private $trackGeom;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Foto::class, mappedBy="trilha", orphanRemoval=true)
+     */
+    private $fotos;
+
+    public function __construct()
+    {
+        $this->fotos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -189,6 +221,84 @@ class Trilha
     public function setMunicipioDoObjetivo(string $municipioDoObjetivo): self
     {
         $this->municipioDoObjetivo = $municipioDoObjetivo;
+
+        return $this;
+    }
+
+    public function getInicioGeom()
+    {
+        return $this->inicioGeom;
+    }
+
+    public function setInicioGeom($inicioGeom): self
+    {
+        $this->inicioGeom = $inicioGeom;
+
+        return $this;
+    }
+
+    public function getFimGeom()
+    {
+        return $this->fimGeom;
+    }
+
+    public function setFimGeom($fimGeom): self
+    {
+        $this->fimGeom = $fimGeom;
+
+        return $this;
+    }
+
+    public function getGeomDoObjetivo()
+    {
+        return $this->geomDoObjetivo;
+    }
+
+    public function setGeomDoObjetivo($geomDoObjetivo): self
+    {
+        $this->geomDoObjetivo = $geomDoObjetivo;
+
+        return $this;
+    }
+
+    public function getTrackGeom()
+    {
+        return $this->trackGeom;
+    }
+
+    public function setTrackGeom($trackGeom): self
+    {
+        $this->trackGeom = $trackGeom;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Foto[]
+     */
+    public function getFotos(): Collection
+    {
+        return $this->fotos;
+    }
+
+    public function addFoto(Foto $foto): self
+    {
+        if (!$this->fotos->contains($foto)) {
+            $this->fotos[] = $foto;
+            $foto->setTrilha($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFoto(Foto $foto): self
+    {
+        if ($this->fotos->removeElement($foto)) {
+            // set the owning side to null (unless already changed)
+            if ($foto->getTrilha() === $this) {
+                $foto->setTrilha(null);
+            }
+        }
 
         return $this;
     }

@@ -13,7 +13,9 @@ services:
     links:
       - db_postgres
   db_postgres:
-    image: postgres:13
+    build:
+      dockerfile: Dockerfile
+      context: ./docker/db_postgres
     ports:
       - "5432:5432"
     environment:

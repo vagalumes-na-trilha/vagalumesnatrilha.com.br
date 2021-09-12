@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TrilhaController!{% endblock %}
+
+{% block body %}
+    <h3 style="text-align: center;">Trilha</h3>
+    <div class="container">
+        <form method="POST">
+            <input id="trilhaId" class="form-control" type="text"
+                   name="trilha[id]" value="{{ trilha.id }}" required>
+            <div class="row">
+
+                <div class="col-12 col-md-3">
+                    <label for="trilhaNome" class="form-label">Nome</label>
+                    <input id="trilhaNome" class="form-control" type="text"
+                           name="trilha[nome]" value="{{ trilha.nome }}" required>
+                </div>
+                <div class="col-12 col-md-3">
+                    <label for="trilhaData" class="form-label">Data (dd/mm/aaaa)</label>
+                    <input id="trilhaData" class="form-control" type="text"
+                           name="trilha[data]" value="{{ trilha.data|date("d/m/Y", "America/Sao_Paulo") }}" required>
+                </div>
+                <div class="col-12 col-md-6">
+                    <label for="trilhaDescricao" class="form-label">Descrição</label>
+                    <textarea id="trilhaDescricao" class="form-control"
+                              name="trilha[descricao]">{{ trilha.descricao }}</textarea>
+                </div>
+                <div class="col-12 col-md-3">
+                    <label for="trilhaTipoDeTrilha" class="form-label mt-3">Tipo De Trilha</label>
+                    <select id="trilhaTipoDeTrilha" class="form-control"
+                            name="trilha[tipoDeTrilha]" required>
+                        <option value="">Selecione...</option>
+                        {% for t in tiposDeTrilha %}
+                            <option value="{{ t.id }}"
+
+                                    {% if trilha.tipoDeTrilha and trilha.tipoDeTrilha.id == t.id %}
+                                        selected
+                                    {% endif %}
+
+                            >{{ t.descricao }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-12 col-md-3">
+                    <label for="trilhaDistanciaEmMetros" class="form-label mt-3">Distância</label>
+                    <div class="input-group">
+                        <input id="trilhaDistanciaEmMetros" class="form-control" type="number"
+                               name="trilha[distanciaEmMetros]" value="{{ trilha.distanciaEmMetros }}"
+                               required>
+                        <span class="input-group-text"> metros</span>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <label for="trilhaAltitudeMaximaEmMetros" class="form-label mt-3">Altitude</label>
+                    <div class="input-group">
+                        <input id="trilhaAltitudeMaximaEmMetros" class="form-control" type="number"
+                               name="trilha[altitudeMaximaEmMetros]" value="{{ trilha.altitudeMaximaEmMetros }}"
+                               required>
+                        <span class="input-group-text"> metros</span>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <label for="trilhaAscencaoPositivaEmMetros" class="form-label mt-3">Ascensão Positiva</label>
+                    <div class="input-group">
+                        <input id="trilhaAscencaoPositivaEmMetros" class="form-control" type="number"
+                               name="trilha[ascencaoPositivaEmMetros]" value="{{ trilha.ascencaoPositivaEmMetros }}"
+                               required>
+                        <span class="input-group-text"> metros</span>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <label for="trilhaTipoDeObjetivo" class="form-label mt-3">Tipo De Objetivo</label>
+                    <select id="trilhaTipoDeObjetivo" class="form-control"
+                            name="trilha[tipoDeObjetivo]" required>
+                        <option value="">Selecione...</option>
+                        {% for t in tiposDeObjetivo %}
+                            <option value="{{ t.id }}"
+
+                                    {% if trilha.tipoDeObjetivo and trilha.tipoDeObjetivo.id == t.id %}
+                                        selected
+                                    {% endif %}
+
+                            >{{ t.descricao }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-12 col-md-3">
+                    <label for="trilhaNomeDoObjetivo" class="form-label mt-3">Nome do Objetivo</label>
+                    <input id="trilhaNomeDoObjetivo" class="form-control" type="text"
+                           name="trilha[nomeDoObjetivo]" value="{{ trilha.nomeDoObjetivo }}" required>
+                </div>
+                <div class="col-12 col-md-3">
+                    <label for="trilhaUFDoObjetivo" class="form-label mt-3">UF do Objetivo</label>
+                    <select id="trilhaUFDoObjetivo" class="form-control"
+                            name="trilha[UFDoObjetivo]" required>
+                        <option value="">Selecione...</option>
+                        {% for uf in ufs %}
+                            <option value="{{ uf.id }}"
+
+                                    {% if trilha.UFDoObjetivo and trilha.UFDoObjetivo.id == uf.id %}
+                                        selected
+                                    {% endif %}
+
+                            >{{ uf.sigla }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <label for="trilhaMunicipioDoObjetivo" class="form-label mt-3">Município do Objetivo</label>
+                    <input id="trilhaMunicipioDoObjetivo" class="form-control" type="text"
+                           name="trilha[municipioDoObjetivo]" value="{{ trilha.municipioDoObjetivo }}" required>
+                </div>
+                <div class="col-12 col-md-3">
+                    <label for="trilhaInicioGeom" class="form-label mt-3">Início (X,Y)</label>
+                    <input id="trilhaInicioGeom" class="form-control" type="text"
+                           name="trilha[inicioGeom]" value="{{ trilha.inicioGeom }}" required>
+                </div>
+                <div class="col-12 col-md-3">
+                    <label for="trilhaGeomDoObjetivo" class="form-label mt-3">Objetivo (X,Y)</label>
+                    <input id="trilhaGeomDoObjetivo" class="form-control" type="text"
+                           name="trilha[geomDoObjetivo]" value="{{ trilha.geomDoObjetivo }}" required>
+                </div>
+                <div class="col-12 col-md-3">
+                    <label for="trilhaFimGeom" class="form-label mt-3">Fim (X,Y)</label>
+                    <input id="trilhaFimGeom" class="form-control" type="text"
+                           name="trilha[fimGeom]" value="{{ trilha.fimGeom }}" required>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary mt-3 form-control">Salvar</button>
+                </div>
+        </form>
+    </div>
+    </div>
+{% endblock %}

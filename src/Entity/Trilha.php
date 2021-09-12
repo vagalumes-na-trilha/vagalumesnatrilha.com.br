@@ -63,7 +63,7 @@ class Trilha
     /**
      * @ORM\ManyToOne(targetEntity=UF::class)
      */
-    private $UFdoObjetivo;
+    private $UFDoObjetivo;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -94,6 +94,11 @@ class Trilha
      * @ORM\OneToMany(targetEntity=Foto::class, mappedBy="trilha", orphanRemoval=true)
      */
     private $fotos;
+
+    /**
+     * @ORM\Column(type="datetimetz")
+     */
+    private $data;
 
     public function __construct()
     {
@@ -201,14 +206,14 @@ class Trilha
         return $this;
     }
 
-    public function getUFdoObjetivo(): ?UF
+    public function getUFDoObjetivo(): ?UF
     {
-        return $this->UFdoObjetivo;
+        return $this->UFDoObjetivo;
     }
 
-    public function setUFdoObjetivo(?UF $UFdoObjetivo): self
+    public function setUFDoObjetivo(?UF $UFDoObjetivo): self
     {
-        $this->UFdoObjetivo = $UFdoObjetivo;
+        $this->UFDoObjetivo = $UFDoObjetivo;
 
         return $this;
     }
@@ -299,6 +304,18 @@ class Trilha
                 $foto->setTrilha(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getData(): ?\DateTimeInterface
+    {
+        return $this->data;
+    }
+
+    public function setData(\DateTimeInterface $data): self
+    {
+        $this->data = $data;
 
         return $this;
     }

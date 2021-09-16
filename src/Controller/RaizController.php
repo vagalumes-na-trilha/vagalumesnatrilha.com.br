@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\CarrosselRepository;
+use App\Service\Contadores;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,7 +12,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class RaizController extends AbstractController
 {
     #[Route('/', name: 'inicio')]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(
+        EntityManagerInterface $entityManager,
+        Contadores $contadores
+    ): Response
     {
         $query = $entityManager->createQuery(
             'SELECT c FROM App\Entity\Carrossel c WHERE 
@@ -25,10 +29,10 @@ class RaizController extends AbstractController
 
         return $this->render('raiz/index.html.twig', [
             'carrossel' => $carrossel,
-            'percorrido' => 25,
-            'altitudeMaxima' => 1350,
-            'ascendido' => 2000,
-            'eventos' => 7
+            'percorrido' => $contadores->getSomaDaDistanciaPercorrida(),
+            'altitudeMaxima' => $contadores->getMaiorAltitudeMaximaEmMetros(),
+            'ascendido' => $contadores->getTotalAscencaoPositivaEmMetros(),
+            'eventos' => $contadores->getTotalDeEventos()
         ]);
     }
 }
